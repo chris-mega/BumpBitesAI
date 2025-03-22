@@ -1,14 +1,18 @@
-from openai import OpenAI
+import os
+from openai import AzureOpenAI
 from google import genai
+from dotenv import load_dotenv, find_dotenv
 
-client = OpenAI(
-    api_key="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"
+client = AzureOpenAI(
+    api_key=os.getenv("AZURE_API_KEY"),
+    api_version=os.getenv("AZURE_API_VERSION", "2024-05-13"),
+    azure_endpoint=os.getenv("AZURE_ENDPOINT"),
 )
 
-client = genai.Client(api_key="AIzaSyDVw8Y8S_CKNMJ4mg9WuPXy_E7GtyEk1As")
+gclient = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
 
 def openai_response(prompt):
-    response = client.chat.completions.create(
+    response = client.completions.create(
         model="gpt-4o",
         store=True,
         messages=[{"role": "system", "content": "You are a nutritionist AI specialized in pregnancy."},
@@ -17,7 +21,7 @@ def openai_response(prompt):
     return response["choices"][0]["message"]["content"]
 
 def gemai_response(prompt):
-    response = client.models.generate_content(
+    response = gclient.models.generate_content(
         model="gemini-2.0-flash",
         contents=prompt,
     )

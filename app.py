@@ -1,4 +1,8 @@
+import os
+from dotenv import load_dotenv, find_dotenv
 from flask import Flask, request, jsonify
+load_dotenv(find_dotenv())
+
 from ai_recipes import get_ai_recipe
 
 app = Flask(__name__)

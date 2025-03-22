@@ -7,10 +7,13 @@ setup(
     author='Chris Melendez',
     author_email='chris.melendezg@gmail.com',
     install_requires=[
+        'python-dotenv',
         'openai',
         'requests',
         'google-genai',
-        'flask'
+        'flask',
+        'azure-storage-blob',  # Specific Azure SDK for Blob storage
+        'azure-identity',  # For authentication
     ],
-    py_modules=['ai_recipes', 'models']
+    py_modules=['ai_recipes', 'models', 'app'],
 )

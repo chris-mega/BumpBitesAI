@@ -1,4 +1,4 @@
-from models import gemai_response
+from models import gemai_response, openai_response
 
 def get_ai_recipe(preferences, aversions, vitamins_needed):
     prompt = f"""
@@ -10,7 +10,9 @@ def get_ai_recipe(preferences, aversions, vitamins_needed):
     Provide only the following 3 things: ingredients, instructions, and a nutritional breakdown. Provide a json response
     """
 
-    response = gemai_response(prompt)
+    # response = gemai_response(prompt)
+    response = openai_response(prompt)
+
     
     return response.strip("```json\n")
 

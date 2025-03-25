@@ -12,7 +12,7 @@ client = AzureOpenAI(
 gclient = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
 
 def openai_response(prompt):
-    response = client.completions.create(
+    response = client.chat.completions.create(
         model="gpt-4o",
         store=True,
         messages=[{"role": "system", "content": "You are a nutritionist AI specialized in pregnancy."},

@@ -4,7 +4,6 @@ azure-core==1.32.0
 azure-identity==1.21.0
 azure-storage-blob==12.25.0
 blinker==1.9.0
-BumpBitesAI @ file:///C:/Users/ChrisM/Documents/BumpBitesAI
 cachetools==5.5.2
 certifi==2025.1.31
 cffi==1.17.1

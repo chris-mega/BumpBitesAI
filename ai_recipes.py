@@ -1,4 +1,4 @@
-from models import gemai_response, openai_response
+from models import openai_response
 
 def get_ai_recipe(preferences, aversions, vitamins_needed):
     prompt = f"""

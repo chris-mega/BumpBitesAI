@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "BumpBitesAI"
+version = "0.1"
+description = "AI Recipes Recommendations for Pregnancy"
+authors = [
+    { name = "Chris Melendez", email = "chris.melendezg@gmail.com" }
+]
+dependencies = [
+    "python-dotenv",
+    "openai",
+    "requests",
+    "flask",
+    "azure-storage-blob",  # Specific Azure SDK for Blob storage
+    "azure-identity",  # For authentication
+]
+
+[tool.setuptools]
+py-modules = ["ai_recipes", "models", "app"]

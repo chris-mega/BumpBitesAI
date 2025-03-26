@@ -9,8 +9,6 @@ def get_ai_recipe(preferences, aversions, vitamins_needed):
 
     Provide only the following 3 things: ingredients, instructions, and a nutritional breakdown. Provide a json response
     """
-
-    # response = gemai_response(prompt)
     response = openai_response(prompt)
 
     

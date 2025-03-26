@@ -30,4 +30,3 @@ six==1.17.0
 tqdm==4.64.1
 urllib3==1.22
 werkzeug==1.0.1
-zipp==1.2.0 ; python_version == "2.7" or python_version >= "3.5" and python_version < "3.7"

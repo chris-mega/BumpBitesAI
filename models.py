@@ -14,4 +14,4 @@ def openai_response(prompt):
         messages=[{"role": "system", "content": "You are a nutritionist AI specialized in pregnancy."},
                   {"role": "user", "content": prompt}]
     )
-    return response["choices"][0]["message"]["content"]
+    return response.choices[0].message.content

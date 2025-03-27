@@ -7,10 +7,9 @@ def get_ai_recipe(preferences, aversions, vitamins_needed):
     - Avoid: {', '.join(aversions)}
     - Include foods high in: {', '.join(vitamins_needed)}
 
-    Provide only the following 3 things: ingredients, instructions, and a nutritional breakdown. Provide a json response
+    Provide only the following 4 things: title, ingredients, instructions, and a nutritional breakdown. Provide a json response
     """
     response = openai_response(prompt)
-
     
     return response.strip("```json\n")
 

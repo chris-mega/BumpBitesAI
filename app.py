@@ -3,9 +3,14 @@ from flask import Flask, request, jsonify
 load_dotenv(find_dotenv())
 
 from ai_recipes import get_ai_recipe
-from database import insert_user
+from database import insert_user, get_user
+import json
 
 app = Flask(__name__)
+
+pregnancy_data = {}
+with open('data/pregnancy.json') as f:
+    pregnancy_data = json.load(f)
 
 @app.route('/get_recipe', methods=['POST'])
 def get_recipe_endpoint():
@@ -20,11 +25,22 @@ def get_recipe_endpoint():
     recipe = get_ai_recipe(preferences, aversions, vitamins_needed)
     return recipe
 
+@app.route('/get_lucky_recipe', methods=['POST'])
+def get_lucky_recipe():
+    data = request.json
+    user_id = data['user_id']
+
+    if not user_id:
+        return jsonify({'error': 'Missing required parameters'}), 400
+
+    user = get_user(user_id)
+    recipe = get_ai_recipe(user["preferences"], user["aversions"], pregnancy_data["vitamins"], user["weeks_pregnant"])
+    return recipe, 200
+
 @app.route('/create_user', methods=['POST'])
 def create_user_endpoint():
     user_data = request.json
 
-    id = user_data['id']
     name = user_data['name']
     preferences = user_data['preferences']
     aversions = user_data['aversions']
@@ -34,8 +50,8 @@ def create_user_endpoint():
         return jsonify({'error': 'Missing required parameters'}), 400
 
     try:
-        insert_user(id, preferences, aversions, name, weeks_pregnant)
-        return jsonify({'message': 'User created successfully'}), 201
+        user_data = insert_user(preferences, aversions, name, weeks_pregnant)
+        return user_data, 201
     except ValueError as e:
         return jsonify({'error': str(e)}), 500
 

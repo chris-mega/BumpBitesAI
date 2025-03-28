@@ -1,11 +1,11 @@
 from models import openai_response
 
-def get_ai_recipe(preferences, aversions, vitamins_needed):
+def get_ai_recipe(preferences, aversions, vitamins_needed, weeks_pregnant=12):
     prompt = f"""
-    Suggest a recipe based on these criteria. Take in mind that the user is 12 weeks pregnant.:
+    Suggest a recipe based on these criteria. Take in mind that the user is {weeks_pregnant} weeks pregnant.:
     - Preferences: {preferences}
     - Avoid: {', '.join(aversions)}
-    - Include foods high in: {', '.join(vitamins_needed)}
+    - Include foods high in some of the following (pick randomly): {', '.join(vitamins_needed)}
 
     Provide only the following 4 things: title, ingredients, instructions, and a nutritional breakdown. Provide a json response
     """

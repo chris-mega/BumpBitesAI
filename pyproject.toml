@@ -16,6 +16,8 @@ dependencies = [
     "flask",
     "azure-storage-blob",  # Specific Azure SDK for Blob storage
     "azure-identity",  # For authentication
+    "flask-cors",
+    "azure-cosmos"
 ]
 
 [tool.setuptools]

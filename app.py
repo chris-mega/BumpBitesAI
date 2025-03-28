@@ -1,5 +1,6 @@
 from dotenv import load_dotenv, find_dotenv
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 load_dotenv(find_dotenv())
 
 from ai_recipes import get_ai_recipe
@@ -7,6 +8,7 @@ from database import insert_user, get_user
 import json
 
 app = Flask(__name__)
+CORS(app)
 
 pregnancy_data = {}
 with open('data/pregnancy.json') as f:
